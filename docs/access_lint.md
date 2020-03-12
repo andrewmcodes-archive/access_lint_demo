@@ -100,7 +100,17 @@ Restart your Rails server and open `localhost:3000/posts` to make sure everythin
 
 ![posts_index_page](./images/posts_index_page.jpg)
 
-Let's commit this code to see AccessLint in action.
+Let's also make a change to `app/views/posts/_form.html.erb` that will trigger a failing lint. We are going to add an inaccessible image to the Post index page:
+
+Add the following to `app/views/posts/index.html.erb`:
+
+```html
+<img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80">
+```
+
+Since this image does not have an `alt` attribute, it should be flagged by AccessLint.
+
+Let's commit this code to see if that is correct:
 
 ```sh
 git add .
