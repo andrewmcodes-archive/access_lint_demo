@@ -1,12 +1,18 @@
+Accessibility (`a11y`) testing cannot be fully automated, and requires special attention in order to get right. There are, however; some tools out there that can help us automate part of it and make it a first class concern.
+
 # AccessLint
 
-According to their documentation, AccessLint is:
+According to their documentation, [AccessLint](https://accesslint.com) is:
 
 >AccessLint brings automated web accessibility testing into your development workflow. When a pull request is opened, AccessLint reviews the changes and comments with any new accessibility issues, giving you quick, timely, and targeted feedback, before code goes live.
 
-## Demo
+## Tutorial
 
-## Setup
+We will be creating a demo app to showcase how to utilize AccessLint on your projects. The completed code can be found [here](https://github.com/andrewmcodes/access_lint_demo) if you'd like to just look over that.
+
+If you'd like to build it together, let's get started!
+
+### Setup
 
 Let's create a new Rails app and `cd` into it:
 
@@ -15,17 +21,17 @@ rails new access_lint_demo
 cd access_lint_demo
 ```
 
-Then setup the database:
-
-```sh
-bin/rails db:setup
-```
-
-And install dependencies
+Install dependencies:
 
 ```sh
 bundle install
 yarn install
+```
+
+And setup the database:
+
+```sh
+bin/rails db:setup
 ```
 
 Now, let's start the Rails server:
@@ -42,7 +48,7 @@ bin/webpack-dev-server
 
 If you navigate to `localhost:3000` in your browser, you should see the Rails welcome page:
 
-![rails_welcome_page](./images/rails_welcome_page.jpg)
+![rails_welcome_page](https://dev-to-uploads.s3.amazonaws.com/i/prwqk92m70wgn1ddk1d6.jpg)
 
 ### Create Repository
 
@@ -59,27 +65,27 @@ git push -u origin master
 
 Your code should now be online in your repo.
 
-## Configuration
+### Configuration
 
 Navigate to [AccessLint](https://accesslint.com) in your browser, and click `Sign in with Github`:
 
-![access_lint_home_page](./images/access_lint_home_page.jpg)
+![access_lint_home_page](https://dev-to-uploads.s3.amazonaws.com/i/lbprkt2tbw896u55cgb0.jpg)
 
 After you authenticate with GitHub, you should be redirected back to the AccessLint setup page. Click `Set up a new installation`:
 
-![access_lint_setup](./images/access_lint_setup.jpg)
+![access_lint_setup](https://dev-to-uploads.s3.amazonaws.com/i/gbaaxts5xc5r5j5h6mga.jpg)
 
 You should get redirected to the AccessLint app on the GitHub Marketplace. Click `Open Source` under the `Pricing and setup` header, and then `Install it for free`:
 
-![github_marketplace](./images/github_marketplace.jpg)
+![github_marketplace](https://dev-to-uploads.s3.amazonaws.com/i/vd45o2btqirbuan9ww93.jpg)
 
 Choose whether you want to install the AccessLint app for all your repos or specifically select your demo repo, and accept the permissions.
 
 AccessLint should now be installed!
 
-![access_lint_dashboard](./images/access_lint_dashboard.jpg)
+![access_lint_dashboard](https://dev-to-uploads.s3.amazonaws.com/i/2v0qsfyz3lr0l966uiqq.jpg)
 
-## Test it out
+### Test it out
 
 Let's test it out on a new branch. Run the following in your terminal:
 
@@ -98,7 +104,7 @@ This will scaffold out some resources for us and add `Post` to our database sche
 
 Restart your Rails server and open `localhost:3000/posts` to make sure everything is working correctly
 
-![posts_index_page](./images/posts_index_page.jpg)
+![posts_index_page](https://dev-to-uploads.s3.amazonaws.com/i/hrg37lm6h228pdigdsq0.jpg)
 
 Let's also make a change to `app/views/posts/_form.html.erb` that will trigger a failing lint. We are going to add an inaccessible image to the Post index page:
 
@@ -120,11 +126,11 @@ git push --set-upstream origin access-lint-test
 
 Now open the repo on GitHub and open a pull request for these changes:
 
-![github_new_pr](./images/github_new_pr.jpg)
+![github_new_pr](https://dev-to-uploads.s3.amazonaws.com/i/xn951kddg8is90e3h3yd.jpg)
 
 AccessLint should run automatically if we have set it up correctly. After it runs, it should flag our missing `alt` attribute:
 
-![failing_access_lint](./images/failing_access_lint.jpg)
+![failing_access_lint](https://dev-to-uploads.s3.amazonaws.com/i/9l2azcm564jzsd26g2qg.jpg)
 
 Let's follow the instructions AccessLint has given us to fix the issue and add an `alt` tag to our image:
 
@@ -142,7 +148,7 @@ git push
 
 If all is well, the AccessLint check should now pass!
 
-![passing_access_lint](./images/passing_access_lint.jpg)
+![passing_access_lint](https://dev-to-uploads.s3.amazonaws.com/i/ygmci46vcwlf8cqctyzh.jpg)
 
 ## Summary
 
@@ -152,10 +158,14 @@ From the [documentation](https://help.accesslint.com/en/articles/1162270-what-fi
 
 >Note that server-side code (e.g. image_tag  and label_tag in Rails) is not evaluated. Only fully formed HTML tags will be tested.
 
-Regardless, AccessLint is a nice way to start introducing accessibility testing. Accessibility is very important when developing on the web, and this tool will help make sure your code does not prevent users from interacting with your web app.
+Regardless, AccessLint is a nice way to start introducing accessibility testing. Accessibility is very important when developing on the web, and this tool will help make sure your code does not prevent users from interacting with your web app. In future posts, we will continue investigate tools to help us with accessibility in our Rails apps.
 
-## Helpful links
+As mentioned at the beginning of this post, you cannot fully automate accessibility testing away, and none of these tools are substitutes for actually learning accessibility best practices.
+
+### Helpful links
 
 - [W3C: Accessibility](https://www.w3.org/standards/webdesign/accessibility)
 - [The A11Y Project](https://a11yproject.com)
 - [Accessibility on Rails](https://reinteractive.com/posts/355-accessibility-on-rails)
+
+Happy coding!
