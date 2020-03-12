@@ -121,3 +121,21 @@ git push --set-upstream origin access-lint-test
 Now open the repo on GitHub and open a pull request for these changes:
 
 ![github_new_pr](./images/github_new_pr.jpg)
+
+AccessLint should run automatically if we have set it up correctly. After it runs, it should flag our missing `alt` attribute:
+
+![failing_access_lint](./images/failing_access_lint.jpg)
+
+Let's follow the instructions AccessLint has given us to fix the issue and add an `alt` tag to our image:
+
+```html
+<img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80" alt="person using MacBook Pro">
+```
+
+Let's commit this code to see if that fixes the issue:
+
+```sh
+git add .
+git commit -m "add alt attribute to image on Post#index"
+git push
+```
