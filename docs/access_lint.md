@@ -105,3 +105,9 @@ Let's commit this code to see AccessLint in action.
 ```sh
 git add .
 git commit -m "create Post resource"
+git push --set-upstream origin access-lint-test
+```
+
+Now open the repo on GitHub and open a pull request for these changes:
+
+![github_new_pr](./images/github_new_pr.jpg)
