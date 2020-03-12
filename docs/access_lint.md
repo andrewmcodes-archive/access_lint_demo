@@ -105,7 +105,7 @@ Let's also make a change to `app/views/posts/_form.html.erb` that will trigger a
 Add the following to `app/views/posts/index.html.erb`:
 
 ```html
-<img alt="test" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80">
+<img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80">
 ```
 
 Since this image does not have an `alt` attribute, it should be flagged by AccessLint.
@@ -141,6 +141,8 @@ git push
 ```
 
 If all is well, the AccessLint check should now pass!
+
+![passing_access_lint](./images/passing_access_lint.jpg)
 
 ## Summary
 
