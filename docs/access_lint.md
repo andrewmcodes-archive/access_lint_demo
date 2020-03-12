@@ -59,4 +59,49 @@ git push -u origin master
 
 Your code should now be online in your repo.
 
-## Configuration
+## AccessLint
+
+Navigate to [AccessLint](https://accesslint.com) in your browser, and click `Sign in with Github`:
+
+![access_lint_home_page](./images/access_lint_home_page.jpg)
+
+After you authenticate with GitHub, you should be redirected back to the AccessLint setup page. Click `Set up a new installation`:
+
+![access_lint_setup](./images/access_lint_setup.jpg)
+
+You should get redirected to the AccessLint app on the GitHub Marketplace. Click `Open Source` under the `Pricing and setup` header, and then `Install it for free`:
+
+![github_marketplace](./images/github_marketplace.jpg)
+
+Choose whether you want to install the AccessLint app for all your repos or specifically select your demo repo, and accept the permissions.
+
+AccessLint should now be installed!
+
+![access_lint_dashboard](./images/access_lint_dashboard.jpg)
+
+## Test it out
+
+Let's test it out on a new branch. Run the following in your terminal:
+
+```sh
+git checkout -b access-lint-test
+```
+
+This should create a new branch in your demo repo. Now, let's scaffold some code:
+
+```sh
+bin/rails g scaffold Post title:string content:text
+bin/rails db:migrate
+```
+
+This will scaffold out some resources for us and add `Post` to our database schema. Most importantly, it will create some new views.
+
+Restart your Rails server and open `localhost:3000/posts` to make sure everything is working correctly
+
+![posts_index_page](./images/posts_index_page.jpg)
+
+Let's commit this code to see AccessLint in action.
+
+```sh
+git add .
+git commit -m "create Post resource"
