@@ -60,3 +60,102 @@ git push -u origin master
 Your code should now be online in your repo.
 
 ## Configuration
+
+Navigate to [AccessLint](https://accesslint.com) in your browser, and click `Sign in with Github`:
+
+![access_lint_home_page](./images/access_lint_home_page.jpg)
+
+After you authenticate with GitHub, you should be redirected back to the AccessLint setup page. Click `Set up a new installation`:
+
+![access_lint_setup](./images/access_lint_setup.jpg)
+
+You should get redirected to the AccessLint app on the GitHub Marketplace. Click `Open Source` under the `Pricing and setup` header, and then `Install it for free`:
+
+![github_marketplace](./images/github_marketplace.jpg)
+
+Choose whether you want to install the AccessLint app for all your repos or specifically select your demo repo, and accept the permissions.
+
+AccessLint should now be installed!
+
+![access_lint_dashboard](./images/access_lint_dashboard.jpg)
+
+## Test it out
+
+Let's test it out on a new branch. Run the following in your terminal:
+
+```sh
+git checkout -b access-lint-test
+```
+
+This should create a new branch in your demo repo. Now, let's scaffold some code:
+
+```sh
+bin/rails g scaffold Post title:string content:text
+bin/rails db:migrate
+```
+
+This will scaffold out some resources for us and add `Post` to our database schema. Most importantly, it will create some new views.
+
+Restart your Rails server and open `localhost:3000/posts` to make sure everything is working correctly
+
+![posts_index_page](./images/posts_index_page.jpg)
+
+Let's also make a change to `app/views/posts/_form.html.erb` that will trigger a failing lint. We are going to add an inaccessible image to the Post index page:
+
+Add the following to `app/views/posts/index.html.erb`:
+
+```html
+<img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80">
+```
+
+Since this image does not have an `alt` attribute, it should be flagged by AccessLint.
+
+Let's commit this code to see if that is correct:
+
+```sh
+git add .
+git commit -m "create Post resource"
+git push --set-upstream origin access-lint-test
+```
+
+Now open the repo on GitHub and open a pull request for these changes:
+
+![github_new_pr](./images/github_new_pr.jpg)
+
+AccessLint should run automatically if we have set it up correctly. After it runs, it should flag our missing `alt` attribute:
+
+![failing_access_lint](./images/failing_access_lint.jpg)
+
+Let's follow the instructions AccessLint has given us to fix the issue and add an `alt` tag to our image:
+
+```html
+<img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80" alt="person using MacBook Pro">
+```
+
+Let's commit this code to see if that fixes the issue:
+
+```sh
+git add .
+git commit -m "add alt attribute to image on Post#index"
+git push
+```
+
+If all is well, the AccessLint check should now pass!
+
+![passing_access_lint](./images/passing_access_lint.jpg)
+
+## Summary
+
+AccessLint is a helpful tool if you want to automated web accessibility testing in your Rails app. Unfortunately, the tool is a bit limited currently.
+
+From the [documentation](https://help.accesslint.com/en/articles/1162270-what-file-types-are-supported):
+
+>Note that server-side code (e.g. image_tag  and label_tag in Rails) is not evaluated. Only fully formed HTML tags will be tested.
+
+Regardless, AccessLint is a nice way to start introducing accessibility testing. Accessibility is very important when developing on the web, and this tool will help make sure your code does not prevent users from interacting with your web app.
+
+## Helpful links
+
+- [W3C: Accessibility](https://www.w3.org/standards/webdesign/accessibility)
+- [The A11Y Project](https://a11yproject.com)
+- [Accessibility on Rails](https://reinteractive.com/posts/355-accessibility-on-rails)
