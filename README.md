@@ -1,24 +1,44 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Install
 
-Things you may want to cover:
+### Clone the repository
 
-* Ruby version
+```shell
+git clone git@github.com:andrewmcodes/access_lint_demo.git
+cd access_lint_demo
+```
 
-* System dependencies
+### Dependencies
 
-* Configuration
+- Ruby 2.7
+- Node 13.7.0
+- Rails 6.0.2.1
+- Webpacker 4.2.2
+- SQLite
 
-* Database creation
+### Install dependencies
 
-* Database initialization
+Using [Bundler](https://github.com/bundler/bundler) and [Yarn](https://github.com/yarnpkg/yarn):
 
-* How to run the test suite
+```shell
+bundle && yarn
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Initialize the database
 
-* Deployment instructions
+```shell
+bin/rails db:setup
+```
 
-* ...
+## Serve
+
+```shell
+rails s
+```
+
+If you want to run the `webpack-dev-server`, run this in another tab:
+
+```shell
+bin/webpack-dev-server
+```
