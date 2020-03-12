@@ -139,3 +139,23 @@ git add .
 git commit -m "add alt attribute to image on Post#index"
 git push
 ```
+
+You should now see the following in GitHub if we have correctly fixed the issue:
+
+[placeholder](#)
+
+## Summary
+
+AccessLint is a helpful tool if you want to automated web accessibility testing in your Rails app. Unfortunately, the tool is a bit limited currently.
+
+From the [documentation](https://help.accesslint.com/en/articles/1162270-what-file-types-are-supported):
+
+>Note that server-side code (e.g. image_tag  and label_tag in Rails) is not evaluated. Only fully formed HTML tags will be tested.
+
+Regardless, AccessLint is a nice way to start introducing accessibility testing. Accessibility is very important when developing on the web, and this tool will help make sure your code does not prevent users from interacting with your web app.
+
+## Helpful links
+
+- [W3C: Accessibility](https://www.w3.org/standards/webdesign/accessibility)
+- [The A11Y Project](https://a11yproject.com)
+- [Accessibility on Rails](https://reinteractive.com/posts/355-accessibility-on-rails)
