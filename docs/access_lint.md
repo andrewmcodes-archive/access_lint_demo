@@ -59,7 +59,7 @@ git push -u origin master
 
 Your code should now be online in your repo.
 
-## AccessLint
+## Configuration
 
 Navigate to [AccessLint](https://accesslint.com) in your browser, and click `Sign in with Github`:
 
@@ -140,9 +140,7 @@ git commit -m "add alt attribute to image on Post#index"
 git push
 ```
 
-You should now see the following in GitHub if we have correctly fixed the issue:
-
-[placeholder](#)
+If all is well, the AccessLint check should now pass!
 
 ## Summary
 
